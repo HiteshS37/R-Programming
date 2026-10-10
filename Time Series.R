@@ -181,8 +181,8 @@ dev.off()
 stock_A_returns = c(0.01, 0.02, -0.03, 0.01, 0.02, -0.01, 0.005, 0.015)
 stock_B_returns = c(0.02, 0.01, -0.02, 0.03, 0.01, -0.01, 0.02, -0.005)
 
-# Function to perform Schmidt-Phillips test for each window
-schmidt_phillips_time_series = function(series1, series2, window_size) {
+# Educational illustration: repeated two-sample t-tests across overlapping windows; NOT the Schmidt-Phillips unit-root test. Overlapping windows produce dependent p-values.
+windowed_two_sample_t_test_p_values = function(series1, series2, window_size) {
   if (length(series1) < window_size || length(series2) < window_size) {
     stop("Series length is less than window size.")
   }
@@ -205,8 +205,8 @@ length(stock_B_returns)
 
 # Example usage
 window_size = 5
-p_values = schmidt_phillips_time_series(stock_A_returns, stock_B_returns, window_size)
+p_values = windowed_two_sample_t_test_p_values(stock_A_returns, stock_B_returns, window_size)
 
-# Aggregate p-values
+# Illustrative arithmetic mean only; NOT a valid combined inferential p-value.
 aggregated_p_value = mean(p_values)
 aggregated_p_value
