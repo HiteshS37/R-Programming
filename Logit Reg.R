@@ -10,9 +10,9 @@ point_estimation = predict(logistic_model, newdata = mtcars, type = "response")
 point_estimation
 
 # 2. Odds VS Probability
-odds = exp(point_estimation)
+odds = point_estimation / (1 - point_estimation)
 odds
-probability = odds / (1 + odds)
+probability = odds / (1 + odds)  # recovers model probability
 probability
 
 # 3. Logit Function
